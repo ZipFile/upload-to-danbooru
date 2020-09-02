@@ -23,8 +23,9 @@ browser.contextMenus.onClicked.addListener(async function(info, tab) {
     const url = await makeUrl(danbooruUrl, batch, info, getReferrer);
     const current = settings.openIn === "current";
     const background = settings.openIn === "background";
+    const nextToCurrent = !!chrome;
 
-    await tabUtils.openPage(url.href, current, background);
+    await tabUtils.openPage(url.href, current, background, nextToCurrent);
 });
 
 browser.pageAction.onClicked.addListener(async function(tab) {
@@ -35,8 +36,9 @@ browser.pageAction.onClicked.addListener(async function(tab) {
     const url = tabUtils.makeUrl(danbooruUrl, batch);
     const current = settings.openIn === "current";
     const background = settings.openIn === "background";
+    const nextToCurrent = !!chrome;
 
-    await tabUtils.openPage(url.href, current, background);
+    await tabUtils.openPage(url.href, current, background, nextToCurrent);
 });
 
 if (chrome) {
